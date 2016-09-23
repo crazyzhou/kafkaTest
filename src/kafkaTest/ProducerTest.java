@@ -28,6 +28,7 @@ public class ProducerTest {
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
 				"org.apache.kafka.common.serialization.StringSerializer");
+		props.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
 		KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 		String s_200b = init(200);
 		String s_500b = init(500);

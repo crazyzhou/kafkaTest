@@ -18,7 +18,7 @@ public class ConsumerTest {
 		PropertyConfigurator.configure("./conf/consumer.properties");
 		Properties props = new Properties();
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.141.208.49:9092,10.141.208.47:9092,10.141.208.45:9092");
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.0.11:9092,10.0.0.12:9092,10.0.0.13:9092");
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
 				"org.apache.kafka.common.serialization.StringDeserializer");
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
@@ -29,11 +29,13 @@ public class ConsumerTest {
 		try {
 			log.info("startTime: " + System.currentTimeMillis());
 			while (count < threshold) {
-				long startTime = System.nanoTime();
+				// long startTime = System.nanoTime();
 				ConsumerRecords<String, String> records = consumer.poll(100);
 				for (ConsumerRecord<String, String> record : records) {
 					count++;
-					log.info("No. " + count + " message : " + (System.nanoTime() - startTime));
+					if (count % 10000 == 0) {
+						log.info("No. " + count + " message : " + System.currentTimeMillis());
+					}
 				}
 			}
 		} finally {

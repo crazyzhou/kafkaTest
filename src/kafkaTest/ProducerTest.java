@@ -40,11 +40,13 @@ public class ProducerTest {
 		try {
 			log.info("startTime: " + System.currentTimeMillis());
 			while (count < threshold) {
-				ProducerRecord<String, String> record = new ProducerRecord<String, String>("Test", s_200b);
-				long startTime = System.nanoTime();
+				ProducerRecord<String, String> record = new ProducerRecord<String, String>(args[0], s_1kb);
+				//long startTime = System.nanoTime();
 				producer.send(record);
 				count++;
-				log.info("No. " + count + " message : " + (System.nanoTime() - startTime));
+				if (count % 10000 == 0) {
+					log.info("No. " + count + " message : " + System.currentTimeMillis());
+				}
 			}
 		} finally {
 			log.info("endTime: " + System.currentTimeMillis());

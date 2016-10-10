@@ -4,7 +4,7 @@
 
   <groupId>KafkaTest</groupId>
   <artifactId>KafkaTest</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
   <packaging>jar</packaging>
 
   <name>KafkaTest</name>
@@ -57,7 +57,7 @@
                             implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                     <transformer
                             implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>kafkaTest.ProducerTest</mainClass>
+                        <mainClass>kafkaTest.ConsumerTest</mainClass>
                     </transformer>
                 </transformers>
             </configuration>

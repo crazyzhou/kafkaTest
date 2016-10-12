@@ -17,6 +17,7 @@ public class ConsumerTest {
 	public static void main(String args[]) throws InterruptedException {
 		PropertyConfigurator.configure("./conf/consumer.properties");
 		Properties props = new Properties();
+		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 500);
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "test");
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.0.11:9092,10.0.0.12:9092,10.0.0.13:9092");
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
